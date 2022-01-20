@@ -73,6 +73,11 @@
       </div>
 
       <button @click="savePatient" class="btn btn-success">Submit</button>
+      <a class="btn btn-secondary float-right"
+          :href="'/patients'"
+        >
+          Cancel
+      </a>
     </div>
 
     <div v-else>

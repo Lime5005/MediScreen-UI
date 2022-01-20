@@ -1,28 +1,30 @@
-import http from "../http-common";
+import axios from "axios";
+
+const PATIENT_API_BASE_URL = "http://localhost:8080/api";
 
 class PatientDataService {
     getAll() {
-        return http.get("/patients");
+        return axios.get(PATIENT_API_BASE_URL + "/patients");
     }
 
     get(id) {
-        return http.get(`/patients/${id}`);
+        return axios.get(PATIENT_API_BASE_URL + `/patients/${id}`);
     }
 
     create(data) {
-        return http.post("/patient/add", data);
+        return axios.post(PATIENT_API_BASE_URL + "/patient/add", data);
     }
 
     update(id, data) {
-        return http.put(`/patients/update/${id}`, data);
+        return axios.put(PATIENT_API_BASE_URL + `/patients/update/${id}`, data);
     }
 
     delete(id) {
-        return http.delete(`/patients/${id}`);
+        return axios.delete(PATIENT_API_BASE_URL + `/patients/${id}`);
     }
 
     findByLastName(lastName) {
-        return http.get(`/patients/family?lastName=${lastName}`);
+        return axios.get(PATIENT_API_BASE_URL + `/patients/family?lastName=${lastName}`);
     }
 }
 

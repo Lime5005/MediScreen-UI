@@ -64,6 +64,11 @@
     >
       Update
     </button>
+    <a class="badge badge-secondary float-right mt-2"
+          :href="'/patients'"
+        >
+          Cancel
+    </a>
     <p>{{ message }}</p>
   </div>
 
