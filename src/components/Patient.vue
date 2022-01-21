@@ -1,6 +1,14 @@
 <template>
   <div v-if="currentPatient" class="edit-form">
     <h4>Patient</h4>
+    <div>
+      <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul class="alert alert-danger">
+        <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      </ul>
+      </p>
+    </div>
     <form>
       <div class="form-group">
         <label for="firstName">First name</label>
@@ -67,7 +75,7 @@
     <a class="badge badge-secondary float-right mt-2"
           :href="'/patients'"
         >
-          Cancel
+          Go Back
     </a>
     <p>{{ message }}</p>
   </div>
@@ -88,6 +96,7 @@ export default {
   components: {DatePick},
   data() {
     return {
+      errors: [],
       currentPatient: null,
       message: ''
     };
@@ -105,6 +114,28 @@ export default {
     },
 
     updatePatient() {
+
+      this.errors = [];
+      if (this.currentPatient.firstName == "") {
+        this.errors.push("First name is required.");
+        return;
+      }
+
+      if (this.currentPatient.lastName == "") {
+        this.errors.push("Last name is required.");
+        return;
+      }
+
+      if (this.currentPatient.birthDate == "") {
+        this.errors.push("Birth date is required.");
+        return;
+      }
+      
+      if (this.currentPatient.sex == null ) {
+        this.errors.push("Please fill in the gender");
+        return;
+      }
+
       PatientDataService.update(this.currentPatient.id, this.currentPatient)
         .then(response => {
           console.log(response.data);
