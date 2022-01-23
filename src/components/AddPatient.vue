@@ -3,13 +3,12 @@
     <div v-if="!submitted">
       
       <div class="form-group">
-        <div>
-          <p v-if="errors.length">
+        <div v-if="errors.length">
           <b>Please correct the following error(s):</b>
           <ul class="alert alert-danger">
-            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+            <li v-for="(error, id) in errors" :key="id">{{ error }}</li>
           </ul>
-          </p>
+
         </div>
         <label for="firstName">First name</label>
         <input
@@ -122,27 +121,15 @@ export default {
   methods: {
     savePatient() {
       var data = {
-        firstName: this.patient.firstName == "" ? null : this.patient.firstName,
-        lastName: this.patient.lastName == "" ? null : this.patient.lastName,
-        birthDate: this.patient.birthDate == "" ? null : this.patient.birthDate,
-        sex: this.patient.sex == null ? null : this.patient.sex,
+        firstName: this.patient.firstName,
+        lastName: this.patient.lastName,
+        birthDate: this.patient.birthDate,
+        sex: this.patient.sex,
         address: this.patient.address,
         phone: this.patient.phone
       };
 
       this.errors = []
-      if (data.firstName == null) {
-        this.errors.push("First name is required");
-      }
-      if (data.lastName == null) {
-        this.errors.push("Last name is required");
-      }
-      if (data.birthDate == null) {
-        this.errors.push("Birth date is required");
-      }
-      if (data.sex == null ) {
-        this.errors.push("Gender is required")
-      }
 
       PatientDataService.create(data)
         .then(response => {
@@ -151,11 +138,8 @@ export default {
           this.submitted = true;
         })
         .catch(e => {
-          console.log(e);
-          // DEBUG: See all below in Console -> user messages -> cjs.js
-          // console.log(e.response.status);
-          // console.log(e.response);
-          // console.log(this.errors);
+          console.log(e.response.data);
+          this.errors = e.response.data;
         });
     },
     

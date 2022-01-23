@@ -5,7 +5,7 @@
         <input type="text" class="form-control" placeholder="Search by Last Name"
           v-model="lastName"/>
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
+          <button class="btn btn-outline-info" type="button"
             @click="searchLastName"
           >
             Search
@@ -110,7 +110,7 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          console.log(e);
+          console.log(e.response);
         });
     },
 

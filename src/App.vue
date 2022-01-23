@@ -2,9 +2,9 @@
   <div id="app">
     <nav class="navbar navbar-expand">
       <router-link to="/" class="navbar-brand">
-      <img src="logo.png" alt="logo">
+      <img src="../public/logo.png" alt="logo">
       Mediscreen</router-link>
-      <div class="navbar-nav mr-auto">
+      <div class="navbar-nav mx-auto">
         <li class="nav-item">
           <router-link to="/patients" class="nav-link">Patients</router-link>
         </li>

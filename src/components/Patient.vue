@@ -1,13 +1,13 @@
 <template>
   <div v-if="currentPatient" class="edit-form">
     <h4>Patient</h4>
-    <div>
-      <p v-if="errors.length">
+    <p v-if="message" class="alert alert-success mt-2">{{ message }}</p>
+    <div v-if="errors.length">
       <b>Please correct the following error(s):</b>
       <ul class="alert alert-danger">
         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
       </ul>
-      </p>
+
     </div>
     <form>
       <div class="form-group">
@@ -77,7 +77,7 @@
         >
           Go Back
     </a>
-    <p>{{ message }}</p>
+    
   </div>
 
   <div v-else>
@@ -109,13 +109,14 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          console.log(e);
+          console.log(e.response);
         });
     },
 
     updatePatient() {
 
       this.errors = [];
+      this.message = "";
       if (this.currentPatient.firstName == "") {
         this.errors.push("First name is required.");
         return;
@@ -142,7 +143,7 @@ export default {
           this.message = 'The patient\'s info was updated successfully!';
         })
         .catch(e => {
-          console.log(e);
+          console.log(e.response);
         });
     },
 
@@ -153,7 +154,7 @@ export default {
           this.$router.push({ name: "patients" });
         })
         .catch(e => {
-          console.log(e);
+          console.log(e.response);
         });
     }
   },
