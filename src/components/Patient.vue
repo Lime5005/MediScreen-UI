@@ -117,25 +117,6 @@ export default {
 
       this.errors = [];
       this.message = "";
-      if (this.currentPatient.firstName == "") {
-        this.errors.push("First name is required.");
-        return;
-      }
-
-      if (this.currentPatient.lastName == "") {
-        this.errors.push("Last name is required.");
-        return;
-      }
-
-      if (this.currentPatient.birthDate == "") {
-        this.errors.push("Birth date is required.");
-        return;
-      }
-      
-      if (this.currentPatient.sex == null ) {
-        this.errors.push("Please fill in the gender");
-        return;
-      }
 
       PatientDataService.update(this.currentPatient.id, this.currentPatient)
         .then(response => {
@@ -143,7 +124,8 @@ export default {
           this.message = 'The patient\'s info was updated successfully!';
         })
         .catch(e => {
-          console.log(e.response);
+          console.log(e.response.data);
+          this.errors = e.response.data;
         });
     },
 
