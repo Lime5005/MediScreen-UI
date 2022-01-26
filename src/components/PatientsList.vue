@@ -28,6 +28,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>Patient Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -38,6 +39,7 @@
           v-for="(patient, index) in patients"
           :key="index"
            @click="setActivePatient(patient, index)">
+            <td>{{ patient.id }}</td>
             <td>{{ patient.firstName }}</td>
             <td>{{ patient.lastName }}</td>
             <td>{{ patient.sex}}</td>
@@ -77,6 +79,7 @@
         >
           Edit
         </a>
+        <a class="badge badge-info float-right" :href="'/records/patient/' + currentPatient.id">Records</a>
       </div>
       <div v-else>
         <br />

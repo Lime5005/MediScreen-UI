@@ -5,11 +5,14 @@
       <img src="../public/logo.png" alt="logo">
       Mediscreen</router-link>
       <div class="navbar-nav mx-auto">
+        <div class="dropdown show">
+          <router-link to="/patients" class="nav-link dropdown-toggle mr-5" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Patients</router-link>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <router-link to="/patient/add" class="dropdown-item">Add</router-link>
+          </div>
+      </div>
         <li class="nav-item">
-          <router-link to="/patients" class="nav-link">Patients</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/patient/add" class="nav-link">Add</router-link>
+          <router-link to="/records" class="nav-link">Records</router-link>
         </li>
       </div>
     </nav>
