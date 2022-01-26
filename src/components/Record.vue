@@ -3,6 +3,23 @@
     <h3>Record</h3>
     <p v-if="message" class="alert alert-success mt-2">{{ message }}
     </p>
+    <div v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul class="alert alert-danger">
+        <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      </ul>
+    </div>
+    <button class="btn btn-sm btn-info mt-2 mb-2" v-on:click="isHidden = !isHidden" @click="getThePatient(currentRecord.patientId)">Show Patient info</button>
+    <div v-if="!isHidden">
+      <div v-if="patient != null">
+        <h5> {{ patient.firstName }} {{ patient.lastName }}</h5>
+        <p>Birthdate: {{ patient.birthDate | formatDate }}</p>
+        <p>Address: {{ patient.address }}</p>
+        <p>Phone: {{ patient.phone }}</p>
+
+      </div>
+    </div>
+
     <form>
       <div class="form-group">
         <label for="note">Note</label>
@@ -27,6 +44,7 @@
 
 <script>
 import RecordDataService from '../services/RecordDataService.js'
+import PatientDataService from '../services/PatientDataService.js'
 
 export default {
   name: 'record-detail',
@@ -34,7 +52,9 @@ export default {
     return {
       errors: [],
       currentRecord: null,
-      message: ''
+      patient: null,
+      message: '',
+      isHidden: true
     };
   },
   methods: {
@@ -46,6 +66,16 @@ export default {
         .catch(error => {
           this.errors = error.response.data.errors;
           console.log(error.response);
+        });
+    },
+    getThePatient(patientId) {
+      PatientDataService.get(patientId)
+        .then(response => {
+          this.patient = response.data;
+          //console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e.response);
         });
     },
 

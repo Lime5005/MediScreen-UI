@@ -33,11 +33,11 @@
               </a>
             </td>
             <td>
-              <a class="badge badge-danger"
+              <button class="badge badge-danger"
                 @click="deleteRecord(record.id)"
               >
                 Delete
-              </a>
+              </button>
             </td>
            </tr>
         </tbody>
@@ -75,6 +75,7 @@ export default {
       RecordDataService.deleteRecord(id)
         .then((response) => {
           console.log(response.data);
+          this.getPatientRecords(this.$route.params.id);
         })
         .catch((error) => {
           console.log(error);
