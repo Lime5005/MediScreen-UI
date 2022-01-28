@@ -14,6 +14,7 @@
       <div v-if="patient != null">
         <h5> {{ patient.firstName }} {{ patient.lastName }}</h5>
         <p>Birthdate: {{ patient.birthDate | formatDate }}</p>
+        <p>Gender: {{ patient.sex }}</p>
         <p>Address: {{ patient.address }}</p>
         <p>Phone: {{ patient.phone }}</p>
 

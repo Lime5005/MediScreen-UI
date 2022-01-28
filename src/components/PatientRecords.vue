@@ -2,7 +2,17 @@
   <div class="list row">
     <div class="col-md-12">
       <h3>Patient Records List</h3>
-      <a class="btn btn-primary" :href="'/records/patient/'+ this.patientId + '/add'">Add record</a>
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-info btn-sm" @click="getAssessment(patientId)">Assessment: <span v-if="assessment">{{ assessment }}</span>
+            <span v-else>No Assessment</span>
+          </a>
+        </div>
+        <div class="col">
+          <a class="btn btn-primary float-right mb-2" :href="'/records/patient/'+ this.patientId + '/add'">Add record</a>
+        </div>
+      </div>
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -50,13 +60,15 @@
 
 <script>
 import RecordDataService from "../services/RecordDataService.js"
+import AssessmentService from "../services/AssessmentService.js"
 
 export default {
   name: "patient-records",
   data() {
     return {
       records: [],
-      patientId: this.$route.params.id
+      patientId: this.$route.params.id,
+      assessment: ""
     };
   },
   methods: {
@@ -64,6 +76,17 @@ export default {
       RecordDataService.getRecords(patientId)
         .then((response) => {
           this.records = response.data;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    getAssessment(patientId) {
+      AssessmentService.getAssessment(patientId)
+        .then((response) => {
+          this.assessment = response.data;
           console.log(response.data);
         })
         .catch((error) => {

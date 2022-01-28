@@ -89,8 +89,8 @@
     </div>
 
     <div v-else>
-      <h4>Patient saved successfully!</h4>
-      <button class="btn btn-success" @click="newPatient">Add</button>
+      <p class="alert alert-success">Patient saved successfully!</p>
+      <button class="btn btn-primary" @click="newPatient">Add</button>
     </div>
   </div>
 </template>

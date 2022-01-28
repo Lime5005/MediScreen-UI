@@ -14,7 +14,7 @@
       <a class="btn btn-secondary ml-5" :href="'/records/patient/' + this.$route.params.patientId">Cancel</a>
     </div>
     <div v-else>
-      <h4>Record saved successfully!</h4>
+      <p class="alert alert-success">Record saved successfully!</p>
       <a class="btn btn-secondary" :href="'/records/patient/' + this.$route.params.patientId">Go Back</a>
     </div>
 
