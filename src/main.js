@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import moment from 'moment';
+import moment from 'moment'
+import "/icons"
 
 Vue.config.productionTip = false
 

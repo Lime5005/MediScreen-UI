@@ -2,7 +2,7 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by Last Name"
+        <input type="text" v-on:keyup.enter="searchLastName" class="form-control" placeholder="Search by Last Name"
           v-model="lastName"/>
         <div class="input-group-append">
           <button class="btn btn-outline-info" type="button"
@@ -28,9 +28,9 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Patient Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>PatientId</th>
+            <th>FirstName</th>
+            <th>LastName</th>
             <th>Gender</th>
           </tr>
         </thead>
@@ -50,8 +50,8 @@
 
     </div>
     <div class="col-md-6">
-      <div v-if="currentPatient">
-        <h4>Patient</h4>
+      <div class="shadow rounded p-3 ml-5 mb-2 bg-light text-dark" v-if="currentPatient">
+        <h4><fa-icon :icon="['fas', 'id-card-alt']"/> &nbsp;&nbsp;Patient</h4>
         <div>
           <label><strong>First Name:</strong></label> {{ currentPatient.firstName }}
         </div>
@@ -74,16 +74,16 @@
           <label><strong>Phone:</strong></label>{{ currentPatient.phone }}
         </div>
 
-        <a class="badge badge-warning"
+        <a class="btn btn-warning"
           :href="'/patients/' + currentPatient.id"
         >
-          Edit
+          <fa-icon :icon="['fas', 'edit']"/>Edit
         </a>
-        <a class="badge badge-info float-right" :href="'/records/patient/' + currentPatient.id">Records</a>
+        <a class="btn btn-info float-right" :href="'/records/patient/' + currentPatient.id"><fa-icon :icon="['fas', 'external-link-alt']"/> Records</a>
       </div>
-      <div v-else>
+      <div class="hint" v-else>
         <br />
-        <p>Please click on a Patient...</p>
+        <p>Click on a Patient to see datails</p>
       </div>
 
     </div>
@@ -151,5 +151,12 @@ export default {
   text-align: left;
   max-width: 750px;
   margin: auto;
+}
+</style>
+
+<style>
+.hint {
+  text-align: center;
+  color: blue;
 }
 </style>

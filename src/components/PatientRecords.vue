@@ -1,15 +1,17 @@
 <template>
   <div class="list row">
     <div class="col-md-12">
-      <h3>Patient Records List</h3>
-      <div class="row">
+      <h3>Patient Records</h3>
+      <div class="row pb-2">
         <div class="col">
-          <a class="btn btn-info btn-sm" @click="getAssessment(patientId)">Assessment: <span v-if="assessment">{{ assessment }}</span>
-            <span v-else>No Assessment</span>
-          </a>
+       
+          <button class="btn btn-info mr-2" @click="getAssessment(patientId)">
+            <fa-icon :icon="['fas', 'circle-notch']" />&nbsp;&nbsp;Diabetes Assessment
+          </button>
+          <span class="border-bottom border-info border-5 pb-2 font-weight-bold" v-if="assessment">{{ assessment }}</span>
         </div>
         <div class="col">
-          <a class="btn btn-primary float-right mb-2" :href="'/records/patient/'+ this.patientId + '/add'">Add record</a>
+          <a class="btn btn-primary float-right" :href="'/records/patient/'+ this.patientId + '/add'"><fa-icon :icon="['fas', 'plus']"/></a>
         </div>
       </div>
 
@@ -17,12 +19,12 @@
         <thead>
           <tr>
             <th>Id</th>
-            <th>Patient Id</th>
-            <th>Note</th>
+            <th>PatientId</th>
+            <th class="text-center"><fa-icon :icon="['fas', 'laptop-medical']"/>&nbsp;&nbsp;Note</th>
             <th>Created At</th>
             <th>Updated At</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th class="action">EDIT</th>
+            <th class="action">DELETE</th>
           </tr>
         </thead>
         <tbody>
@@ -36,17 +38,17 @@
             <td>{{ record.createdAt | formatDateTime }}</td>
             <td>{{ record.updatedAt | formatDateTime }}</td>
             <td>
-              <a class="badge badge-warning"
+              <a class="btn btn-warning"
                 :href="'/records/' + record.id"
               >
-                Edit
+                <fa-icon :icon="['fas', 'edit']"/>
               </a>
             </td>
             <td>
-              <button class="badge badge-danger"
+              <button class="btn btn-danger"
                 @click="deleteRecord(record.id)"
               >
-                Delete
+                <fa-icon :icon="['fas', 'trash']"/>
               </button>
             </td>
            </tr>
@@ -110,3 +112,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.action{
+  color: indigo;
+}
+</style>

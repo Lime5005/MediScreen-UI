@@ -11,9 +11,9 @@
     </div>
     <button class="btn btn-sm btn-info mt-2 mb-2" v-on:click="isHidden = !isHidden" @click="getThePatient(currentRecord.patientId)">Show Patient info</button>
     <div v-if="!isHidden">
-      <div v-if="patient != null">
-        <h5> {{ patient.firstName }} {{ patient.lastName }}</h5>
-        <p>Birthdate: {{ patient.birthDate | formatDate }}</p>
+      <div class="shadow rounded p-3 mb-2 bg-light text-dark" v-if="patient != null">
+        <h5><fa-icon :icon="['fas', 'id-card-alt']"/> &nbsp;&nbsp; {{ patient.firstName }} {{ patient.lastName }}</h5>
+        <p>Birthdate: {{ patient.birthDate | formatDate }} &nbsp;&nbsp;|&nbsp;&nbsp; Age: {{age}}</p>
         <p>Gender: {{ patient.sex }}</p>
         <p>Address: {{ patient.address }}</p>
         <p>Phone: {{ patient.phone }}</p>
@@ -24,18 +24,20 @@
     <form>
       <div class="form-group">
         <label for="note">Note</label>
-        <input type="text" class="form-control" 
+        <textarea type="text" class="form-control" 
+        rows="5"
         id="note" 
         v-model="currentRecord.note"
         name="note">
+        </textarea>
       </div>
     </form>
-    <button type="submit" class="badge badge-success"
+    <button type="submit" class="btn btn-success"
       @click="updateRecord"
     >
       Update
     </button>
-    <a class="badge badge-secondary float-right mt-2"
+    <a class="btn btn-secondary float-right mt-2"
           :href="'/records/patient/' + this.currentRecord.patientId">
           Go Back
     </a>
@@ -55,7 +57,8 @@ export default {
       currentRecord: null,
       patient: null,
       message: '',
-      isHidden: true
+      isHidden: true,
+      age: null
     };
   },
   methods: {
@@ -74,6 +77,10 @@ export default {
         .then(response => {
           this.patient = response.data;
           //console.log(response.data);
+          this.patientBirth = response.data.birthDate;
+          //console.log(this.patientBirth);
+          this.age = this.calculateAge(this.patientBirth);
+          //console.log(this.age);
         })
         .catch(e => {
           console.log(e.response);
@@ -95,6 +102,9 @@ export default {
           this.errors = error.response.data.errors;
           console.log(error.response);
         });
+    },
+    calculateAge(patientBirth) {
+      return Math.floor((new Date() - new Date(patientBirth).getTime()) / 3.15576e+10);
     }
   },
   mounted() {

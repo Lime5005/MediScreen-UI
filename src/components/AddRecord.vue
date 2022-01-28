@@ -3,15 +3,17 @@
     <div v-if="!submmited">
       <div class="form-group">
         <label for="note">Note</label>
-        <input type="text" 
+        <textarea type="text" 
         class="form-control" 
+        rows="5"
         id="note"
         required
         v-model="record.note"
         name="note">
+        </textarea>
       </div>
       <button @click="saveRecord" class="btn btn-success">Submit</button>
-      <a class="btn btn-secondary ml-5" :href="'/records/patient/' + this.$route.params.patientId">Cancel</a>
+      <a class="btn btn-secondary float-right" :href="'/records/patient/' + this.$route.params.patientId">Cancel</a>
     </div>
     <div v-else>
       <p class="alert alert-success">Record saved successfully!</p>

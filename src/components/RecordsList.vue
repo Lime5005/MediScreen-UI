@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <th>Id</th>
-            <th>Patient Id</th>
+            <th>PatientId</th>
             <th>Note</th>
             <th>Created At</th>
             <th>Updated At</th>
