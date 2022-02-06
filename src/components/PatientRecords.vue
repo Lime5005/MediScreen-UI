@@ -3,11 +3,12 @@
     <div class="col-md-12">
       <h3>Patient Records</h3>
       <div class="row pb-2">
-        <div class="col">       
+        <div class="col">
           <button class="btn btn-info mr-2" @click="getAssessment(patientId)">
             <fa-icon :icon="['fas', 'circle-notch']" />&nbsp;&nbsp;Diabetes Assessment
           </button>
           <span class="border-bottom border-info border-5 pb-2 font-weight-bold" v-if="assessment">{{ assessment }}</span>
+          <span v-else>No assessment yet</span>
         </div>
         <div class="col">
           <a class="btn btn-primary float-right" :href="'/records/patient/'+ this.patientId + '/add'"><fa-icon :icon="['fas', 'plus']"/></a>
