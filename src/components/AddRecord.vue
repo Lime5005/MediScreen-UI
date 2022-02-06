@@ -2,6 +2,13 @@
   <div class="submit-form">
     <div v-if="!submmited">
       <div class="form-group">
+        <div v-if="error">
+          <b>Please correct the following error:</b>
+          <ul class="alert alert-danger">
+            <li>{{ error }}</li>
+          </ul>
+
+        </div>
         <label for="note">Note</label>
         <textarea type="text" 
         class="form-control" 
@@ -30,7 +37,7 @@ export default {
   name: 'add-record',
   data() {
     return {
-      errors: [],
+      error: "",
       record: {
         note: ""
       },
@@ -39,18 +46,19 @@ export default {
   },
   methods: {
     saveRecord() {
+      this.error = ""
       var data = {
         note: this.record.note
       };
       RecordDataService.createRecord(this.record.patientId, data)
         .then(response => {
-          this.record = response.data.id;
+          this.record.id = response.data.id;
           console.log(response.data);
           this.submmited = true;
         })
         .catch(error => {
-          this.errors = error.response.data.errors;
-          console.log(error.response);
+          this.error = "Note should not be empty";
+          console.log(error.response.data.message);
         });
     }
   },

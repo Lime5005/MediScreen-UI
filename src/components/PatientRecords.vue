@@ -3,8 +3,7 @@
     <div class="col-md-12">
       <h3>Patient Records</h3>
       <div class="row pb-2">
-        <div class="col">
-       
+        <div class="col">       
           <button class="btn btn-info mr-2" @click="getAssessment(patientId)">
             <fa-icon :icon="['fas', 'circle-notch']" />&nbsp;&nbsp;Diabetes Assessment
           </button>

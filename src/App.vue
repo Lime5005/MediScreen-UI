@@ -33,18 +33,18 @@ export default {
 <style>
 .navbar{
   color: #D4F1F4;
-  background-color: #189AB4;
+  background-color: rgb(0 50 98);
 }
 .navbar-brand{
   margin-left: 5rem;
-  color: #05445E;
+  color: white;
   font-weight: 700;
+}
+.navbar-brand:hover, a.nav-link:hover{
+  color: #68BBE3;
 }
 .nav-link{
   color: #FFFFFF;
-}
-a.nav-link:hover{
-  color: #D4F1F4;
 }
 a.navbar-brand{
   padding: 0 0;
