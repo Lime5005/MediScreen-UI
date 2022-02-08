@@ -134,7 +134,7 @@ export default {
       PatientDataService.create(data)
         .then(response => {
           this.patient.id = response.data.id;
-          console.log(response.data);
+          //console.log(response.data);
           this.submitted = true;
         })
         .catch(e => {

@@ -63,7 +63,7 @@ export default {
       RecordDataService.getAllRecords()
         .then((response) => {
           this.records = response.data;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -74,7 +74,7 @@ export default {
       RecordDataService.deleteRecord(id)
         .then((response) => {
           console.log(response.data);
-          this.getPatientRecords(this.$route.params.id);
+          this.getRecords();
         })
         .catch((error) => {
           console.log(error);

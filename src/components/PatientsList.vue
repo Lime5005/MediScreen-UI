@@ -110,7 +110,7 @@ export default {
       PatientDataService.getAll()
         .then(response => {
           this.patients = response.data;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch(e => {
           console.log(e.response);
@@ -132,7 +132,7 @@ export default {
       PatientDataService.findByLastName(this.lastName)
         .then(response => {
           this.patients = response.data;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch(e => {
           console.log(e);

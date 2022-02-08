@@ -53,7 +53,7 @@ export default {
       RecordDataService.createRecord(this.record.patientId, data)
         .then(response => {
           this.record.id = response.data.id;
-          console.log(response.data);
+          //console.log(response.data);
           this.submmited = true;
         })
         .catch(error => {

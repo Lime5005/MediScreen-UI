@@ -78,7 +78,7 @@ export default {
       RecordDataService.getRecords(patientId)
         .then((response) => {
           this.records = response.data;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -89,7 +89,7 @@ export default {
       AssessmentService.getAssessment(patientId)
         .then((response) => {
           this.assessment = response.data;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -99,7 +99,7 @@ export default {
     deleteRecord(id) {
       RecordDataService.deleteRecord(id)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           this.getPatientRecords(this.$route.params.id);
         })
         .catch((error) => {
