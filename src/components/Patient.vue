@@ -120,7 +120,7 @@ export default {
 
       PatientDataService.update(this.currentPatient.id, this.currentPatient)
         .then(response => {
-          //console.log(response.data);
+          console.log(response.data);
           this.message = 'The patient\'s info was updated successfully!';
         })
         .catch(e => {
@@ -132,7 +132,7 @@ export default {
     deletePatient() {
       PatientDataService.delete(this.currentPatient.id)
         .then(response => {
-          //console.log(response.data);
+          console.log(response.data);
           this.$router.push({ name: "patients" });
         })
         .catch(e => {

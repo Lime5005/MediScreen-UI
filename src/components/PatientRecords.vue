@@ -99,7 +99,7 @@ export default {
     deleteRecord(id) {
       RecordDataService.deleteRecord(id)
         .then((response) => {
-          //console.log(response.data);
+          console.log(response.data);
           this.getPatientRecords(this.$route.params.id);
         })
         .catch((error) => {
